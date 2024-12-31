@@ -3,28 +3,28 @@
 
 declare module "@popovmp/base64" {
     /**
-     * Converts a string to a base64 string.
+     * Converts a string to a base64url string.
      *
      * Example:
      * ```javascript
-     * stringToBase64("foo") // "Zm9v"
+     * const base64Url = base64.stringToBase64Url("foo"); //=> "Zm9v"
      * ```
      * @param {string} str
      * @returns {string}
      */
-    export function stringToBase64(str: string): string;
+    export function stringToBase64Url(str :string): string;
 
     /**
-     * Converts a base64 string to a string.
+     * Converts a base64url string to a string.
      *
      * Example:
      * ```javascript
-     * base64ToString("Zm9v") // "foo"
+     * const text = base64.base64UrlToString("Zm9v"); //=> "foo"
      * ```
-     * @param {string} strB64
+     * @param {string} strB64Url
      * @returns {string}
      */
-    export function base64ToString(strB64: string): string;
+    export function base64UrlToString(strB64Url: string): string
 
     /**
      * Converts a base64 string to a base64url string.
@@ -60,7 +60,7 @@ declare module "@popovmp/base64" {
      * @param {string} str
      * @returns {string}
      */
-    export function stringToBase64(str: string): string
+    export function stringToBase64(str: string): string;
 
     /**
      * Converts a base64 string to a string.
@@ -69,11 +69,10 @@ declare module "@popovmp/base64" {
      * ```javascript
      * base64ToString("Zm9v") // "foo"
      * ```
-     *
      * @param {string} strB64
      * @returns {string}
      */
-    export function base64ToString(strB64: string): string
+    export function base64ToString(strB64: string): string;
 
     /**
      * Converts a Uint8Array to a base64 string.

@@ -1,6 +1,6 @@
 {
   "name": "@popovmp/base64",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Base64 encoding / decoding for NodeJS",
   "main": "index.mjs",
   "type": "module",

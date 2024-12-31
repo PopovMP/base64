@@ -23,8 +23,8 @@ const B64IDX = {
  * ```javascript
  * const base64Url = base64.stringToBase64Url("foo"); //=> "Zm9v"
  * ```
- * @param { string } str
- * @returns { string }
+ * @param {string} str
+ * @returns {string}
  */
 export function stringToBase64Url(str) {
     return base64ToBase64Url(stringToBase64(str));
@@ -37,8 +37,8 @@ export function stringToBase64Url(str) {
  * ```javascript
  * const text = base64.base64UrlToString("Zm9v"); //=> "foo"
  * ```
- * @param { string } strB64Url
- * @returns { string }
+ * @param {string} strB64Url
+ * @returns {string}
  */
 export function base64UrlToString(strB64Url) {
     return base64ToString(base64UrlToBase64(strB64Url));
