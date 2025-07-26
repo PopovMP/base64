@@ -154,8 +154,8 @@ export function bytesToBase64(input) {
         const num24b = (input[i - 2] << 16) | (input[i - 1] << 8) | input[i];
         output[j++] = CHARS[(num24b >> 18) & 0x3f];
         output[j++] = CHARS[(num24b >> 12) & 0x3f];
-        output[j++] = CHARS[(num24b >> 6) & 0x3f];
-        output[j++] = CHARS[num24b & 0x3f];
+        output[j++] = CHARS[(num24b >>  6) & 0x3f];
+        output[j++] = CHARS[ num24b        & 0x3f];
     }
 
     if (padLen === 2) {
@@ -168,7 +168,7 @@ export function bytesToBase64(input) {
         const num24b = (input[len] << 16) | (input[len + 1] << 8);
         output[j++] = CHARS[(num24b >> 18) & 0x3f];
         output[j++] = CHARS[(num24b >> 12) & 0x3f];
-        output[j++] = CHARS[(num24b >> 6) & 0x3f];
+        output[j++] = CHARS[(num24b >>  6) & 0x3f];
         output[j++] = "=";
     }
 
@@ -187,7 +187,7 @@ export function bytesToBase64(input) {
  * @returns {Uint8Array}
  */
 export function base64ToBytes(strB64) {
-    const input = strB64.split("");
+    const input  = strB64.split("");
     const inpLen = input.length;
     const padLen = strB64.endsWith("==") ? 2 : strB64.endsWith("=") ? 1 : 0;
     const outLen = (inpLen * 3 / 4) - padLen;
@@ -197,27 +197,27 @@ export function base64ToBytes(strB64) {
     const len = inpLen - (padLen > 0 ? 4 : 0);
     for (let i = 3; i < len; i += 4) {
         const num24b = (B64IDX[input[i - 3]] << 18) |
-            (B64IDX[input[i - 2]] << 12) |
-            (B64IDX[input[i - 1]] << 6) |
-            B64IDX[input[i]];
+                       (B64IDX[input[i - 2]] << 12) |
+                       (B64IDX[input[i - 1]] <<  6) |
+                        B64IDX[input[i    ]];
 
         output[j++] = (num24b >> 16) & 0xff;
-        output[j++] = (num24b >> 8) & 0xff;
-        output[j++] = num24b & 0xff;
+        output[j++] = (num24b >>  8) & 0xff;
+        output[j++] =  num24b        & 0xff;
     }
 
     if (padLen === 2) {
-        const num24b = (B64IDX[input[len]] << 18) |
-            (B64IDX[input[len + 1]] << 12);
+        const num24b = (B64IDX[input[len    ]] << 18) |
+                       (B64IDX[input[len + 1]] << 12);
 
         output[j++] = (num24b >> 16) & 0xff;
     } else if (padLen === 1) {
-        const num24b = (B64IDX[input[len]] << 18) |
-            (B64IDX[input[len + 1]] << 12) |
-            (B64IDX[input[len + 2]] << 6);
+        const num24b = (B64IDX[input[len    ]] << 18) |
+                       (B64IDX[input[len + 1]] << 12) |
+                       (B64IDX[input[len + 2]] << 6);
 
         output[j++] = (num24b >> 16) & 0xff;
-        output[j++] = (num24b >> 8) & 0xff;
+        output[j++] = (num24b >>  8) & 0xff;
     }
 
     return output;
